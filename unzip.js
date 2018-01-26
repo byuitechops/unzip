@@ -6,17 +6,17 @@ const decompress = require('decompress');
 module.exports = (course, stepCallback) => {
   try {
     /* Unzip the course into a new folder */
-    decompress(course.info.originalFilepath, course.info.unzippedFilepath)
-    .then((files) => {
-      course.message('unzip', 'Course successfully unzipped');
-      stepCallback(null, course);
-    }, (promiseError) => {
-      course.FatalError(promiseError);
-      stepCallback(promiseError, course);
-  });
+    decompress(course.info.originalZipPath, course.info.unzippedPath)
+      .then((files) => {
+        course.message('Course successfully unzipped');
+        stepCallback(null, course);
+      }, (promiseError) => {
+        course.fatalError(promiseError);
+        stepCallback(promiseError, course);
+      });
 
   } catch (e) {
-    course.FatalError(e);
+    course.fataError(e);
     stepCallback(e, course);
   }
 };
