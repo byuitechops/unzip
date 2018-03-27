@@ -18,5 +18,6 @@
   "homepage": "https://github.com/byuitechops/unzip#readme",
   "dependencies": {
     "decompress": "^4.2.0"
-  }
+  },
+  "childType": "shell"
 }
